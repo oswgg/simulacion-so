@@ -1,0 +1,55 @@
+Cosas generales de la nueva versión del proyecto:
+
+    Decidí mantener la GUI, para no tener que crear todo desde de cero y
+    no queria usar terminal para que no se veria horrible, ahorrando tiempo.
+
+    Los procesos ahora se crean manualmente ya que el programa tronaba de tanto
+    proceso creado, ya no es automático.
+
+    Cada tick de la pantalla de procesos es para actualizar datos, elimina 10 ms por tick
+
+1.- Procesos:
+    Como la versión anterior, se crea un proceso con datos aleatorios.
+    se lanzan dos ventanas emergente, la primera para ver datos del proceso creado,
+    la segunda de error por falta de memoria.
+    Los procesos tienen una pequeña probabilidad de que se suspendan y después de un tiempo vuelva al
+    estado de listo.
+
+2.-Asignación de recursos:
+    En config.ini se definen los recursos a utilizar.
+    cpu es la cantidad de procesos ejecutandose a la vez.
+
+    Total_memory es la capacidad de memoria total cuando se crea un proceso,
+    toma parte de la memoria y se pone en la cola de espera, si no hay capacidad
+    para crear un proceso se rechaza, cuando un proceso termina libera la memoria ocupada,
+    y puede crearse otro proceso.
+
+3.-Algoritmo de planificacion:
+    SFJ(Short Job First): se ejecutará el proceso con la menor cantidad de rafaga de memoria.
+    Prioridad: 1 = más prioridad, 10 = menos prioridad.
+    (puede causar inanición en los procesos con menor prioridad).
+
+4.- Comunicacion y sincronización:
+    Cree una carpeta para tenerlo más organizado.
+    Comunicación: memoria compartida.
+    Sincronización: mutex. Solo un proceso accede al buffer a la vez
+
+    Productor-consumidor: unos de los ejemplos pedidos en el pdf(No quise complicarme)
+
+        productor produce recursos y espera si el buffer esta lleno
+        consumidor espera si el buffer esta vacio
+        Cuando el buffer se llena, el productor de bloquea y cuando se vacia
+        el consumidor se bloquea, tiene exclusion mutua.
+
+        Productor crea item y los guarda.
+        Consumidor toma los items y los usa.
+        buffer donde se guardan los item.
+        mutex evita conflictos por quien llega primero.
+        sincronización espera cuando esta lleno o vacio.
+
+5.- Terminar proceso:
+    normal: proceso termina sin interferencia y su rafaga se agota.
+    abrupta: Nosotros terminamos el proceso, liberando todo lo que ocupaba.
+
+Lo pensé para quien vaya a documentar.
+¡ELIMINAR ESTE .TXT CUANDO SE SUBA AL REPOSITORIO!.
