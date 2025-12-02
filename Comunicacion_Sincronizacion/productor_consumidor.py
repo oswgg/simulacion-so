@@ -1,6 +1,6 @@
-from nucleo_procesos import Process
-from Comunicacion_Sincronizacion.memoria_compartida import SharedMemory
-from Comunicacion_Sincronizacion.mutex import Mutex
+from Proyecto_Final_SO.nucleo_procesos import Process
+from Proyecto_Final_SO.Comunicacion_Sincronizacion.memoria_compartida import SharedMemory
+from Proyecto_Final_SO.Comunicacion_Sincronizacion.mutex import Mutex
 import random
 
 

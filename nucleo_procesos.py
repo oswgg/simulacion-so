@@ -2,7 +2,6 @@ from __future__ import annotations
 import threading
 import time
 import random
-from Comunicacion_Sincronizacion.productor_consumidor import ProducerConsumer
 
 
 class Process:
@@ -411,6 +410,8 @@ class SimulationController:
         if self.producer_consumer and self.pc_enabled:
             return (False, "Productor-Consumidor ya está ejecutándose")
 
+        # Importar aquí para evitar importación circular
+        from Proyecto_Final_SO.Comunicacion_Sincronizacion.productor_consumidor import ProducerConsumer
         self.producer_consumer = ProducerConsumer(buffer_size)
         self.producer_consumer.create_processes(self.scheduler, self.resource_manager)
 
